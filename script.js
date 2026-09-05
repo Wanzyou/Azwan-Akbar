@@ -1,33 +1,77 @@
-// ACTIVE MENU
+// SINGLE-PAGE PANEL NAVIGATION
 
-const sections = document.querySelectorAll("section");
+const panels = Array.from(document.querySelectorAll(".panel"));
 const navLinks = document.querySelectorAll(".nav-menu a");
 
-window.addEventListener("scroll", () => {
+let currentIndex = panels.findIndex(p => p.classList.contains("active"));
+if(currentIndex === -1) currentIndex = 0;
 
-    let current = "";
+const reduceMotionNav = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TRANSITION_MS = reduceMotionNav ? 0 : 850;
 
-    sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 200;
-
-        if(scrollY >= sectionTop){
-
-            current = section.getAttribute("id");
-
-        }
-
-    });
+function setActiveLink(id){
 
     navLinks.forEach(link => {
 
         link.classList.remove("active-link");
 
-        if(link.getAttribute("href") === `#${current}`){
+        if(link.getAttribute("href") === `#${id}`){
 
             link.classList.add("active-link");
 
         }
+
+    });
+
+}
+
+function goToPanel(targetIndex){
+
+    if(targetIndex === currentIndex || targetIndex < 0 || targetIndex >= panels.length) return;
+
+    const oldPanel = panels[currentIndex];
+    const newPanel = panels[targetIndex];
+    const goingForward = targetIndex > currentIndex;
+
+    newPanel.classList.remove("enter-from-right","enter-from-left","exit-to-left","exit-to-right");
+    newPanel.classList.add(goingForward ? "enter-from-right" : "enter-from-left");
+
+    // force layout so the browser registers the starting position before animating
+    // eslint-disable-next-line no-unused-expressions
+    newPanel.offsetHeight;
+
+    requestAnimationFrame(() => {
+
+        oldPanel.classList.remove("active");
+        oldPanel.classList.add(goingForward ? "exit-to-left" : "exit-to-right");
+
+        newPanel.classList.remove("enter-from-right","enter-from-left");
+        newPanel.classList.add("active");
+
+    });
+
+    setTimeout(() => {
+
+        oldPanel.classList.remove("exit-to-left","exit-to-right");
+
+    }, TRANSITION_MS);
+
+    currentIndex = targetIndex;
+
+    setActiveLink(newPanel.id);
+
+}
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        const targetId = link.getAttribute("href").replace("#","");
+        const targetIndex = panels.findIndex(p => p.id === targetId);
+
+        goToPanel(targetIndex);
 
     });
 
@@ -45,23 +89,11 @@ document.addEventListener("mousemove", (e) => {
 
 });
 
-// HEADER EFFECT
+// HEADER (always solid — no scroll to react to anymore)
 
 const header = document.getElementById("header");
 
-window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 50){
-
-        header.style.background = "rgba(2,6,23,0.92)";
-
-    }else{
-
-        header.style.background = "rgba(2,6,23,0.65)";
-
-    }
-
-});
+if(header) header.style.background = "rgba(2,6,23,0.92)";
 
 // LANGUAGE
 
@@ -159,7 +191,7 @@ if(window.innerWidth > 768 && !reduceMotion){
 
 }
 
-// PARALLAX BACKGROUND ORBS
+// AMBIENT BACKGROUND PARALLAX (mouse-driven, since there's no scroll anymore)
 
 const orbOne = document.querySelector(".orb-one");
 const orbTwo = document.querySelector(".orb-two");
@@ -168,14 +200,15 @@ const networkGraph = document.querySelector(".network-graph");
 
 if(!reduceMotion){
 
-    window.addEventListener("scroll", () => {
+    document.addEventListener("mousemove", (e) => {
 
-        const y = window.scrollY;
+        const nx = (e.clientX / window.innerWidth) - 0.5;
+        const ny = (e.clientY / window.innerHeight) - 0.5;
 
-        if(orbOne) orbOne.style.transform = `translateY(${y * 0.15}px)`;
-        if(orbTwo) orbTwo.style.transform = `translateY(${y * -0.1}px)`;
-        if(orbThree) orbThree.style.transform = `translateY(${y * 0.08}px)`;
-        if(networkGraph) networkGraph.style.transform = `translateY(${y * 0.05}px)`;
+        if(orbOne) orbOne.style.transform = `translate(${nx * 40}px, ${ny * 40}px)`;
+        if(orbTwo) orbTwo.style.transform = `translate(${nx * -35}px, ${ny * -35}px)`;
+        if(orbThree) orbThree.style.transform = `translate(${nx * 25}px, ${ny * 25}px)`;
+        if(networkGraph) networkGraph.style.transform = `translate(${nx * 15}px, ${ny * 15}px)`;
 
     });
 
