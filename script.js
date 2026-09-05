@@ -62,7 +62,9 @@ function goToPanel(targetIndex){
 
 }
 
-navLinks.forEach(link => {
+const panelNavTriggers = document.querySelectorAll(".nav-menu a, .btn.text, .btn-outline.text");
+
+panelNavTriggers.forEach(link => {
 
     link.addEventListener("click", (e) => {
 
