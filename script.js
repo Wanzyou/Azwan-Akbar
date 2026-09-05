@@ -42,11 +42,15 @@ function goToPanel(targetIndex){
 
     requestAnimationFrame(() => {
 
-        oldPanel.classList.remove("active");
-        oldPanel.classList.add(goingForward ? "exit-to-left" : "exit-to-right");
+        requestAnimationFrame(() => {
 
-        newPanel.classList.remove("enter-from-right","enter-from-left");
-        newPanel.classList.add("active");
+            oldPanel.classList.remove("active");
+            oldPanel.classList.add(goingForward ? "exit-to-left" : "exit-to-right");
+
+            newPanel.classList.remove("enter-from-right","enter-from-left");
+            newPanel.classList.add("active");
+
+        });
 
     });
 
