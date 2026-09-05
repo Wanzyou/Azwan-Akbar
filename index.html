@@ -115,17 +115,56 @@
 
         <div class="hero-3d">
 
-            <div class="glass-cube cube1"></div>
+            <svg class="network-graph" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
 
-            <div class="glass-cube cube2"></div>
+                <g class="ng-edges">
+                    <line x1="150" y1="120" x2="380" y2="90"></line>
+                    <line x1="380" y1="90" x2="620" y2="140"></line>
+                    <line x1="620" y1="140" x2="850" y2="110"></line>
+                    <line x1="150" y1="120" x2="250" y2="300"></line>
+                    <line x1="620" y1="140" x2="500" y2="320"></line>
+                    <line x1="850" y1="110" x2="750" y2="290"></line>
+                    <line x1="250" y1="300" x2="500" y2="320"></line>
+                    <line x1="500" y1="320" x2="750" y2="290"></line>
+                    <line x1="250" y1="300" x2="150" y2="480"></line>
+                    <line x1="500" y1="320" x2="450" y2="500"></line>
+                    <line x1="750" y1="290" x2="800" y2="470"></line>
+                    <line x1="150" y1="480" x2="450" y2="500"></line>
+                    <line x1="450" y1="500" x2="800" y2="470"></line>
+                </g>
 
-            <div class="floating-circle"></div>
+                <g class="ng-nodes">
+                    <circle class="ng-node" cx="150" cy="120" r="7"></circle>
+                    <circle class="ng-node" cx="380" cy="90" r="6"></circle>
+                    <circle class="ng-node" cx="620" cy="140" r="8"></circle>
+                    <circle class="ng-node" cx="850" cy="110" r="6"></circle>
+                    <circle class="ng-node" cx="250" cy="300" r="7"></circle>
+                    <circle class="ng-node" cx="500" cy="320" r="9"></circle>
+                    <circle class="ng-node" cx="750" cy="290" r="7"></circle>
+                    <circle class="ng-node" cx="150" cy="480" r="6"></circle>
+                    <circle class="ng-node" cx="450" cy="500" r="7"></circle>
+                    <circle class="ng-node" cx="800" cy="470" r="6"></circle>
+                </g>
 
-            <div class="line-glow line1"></div>
+                <g class="ng-packets">
+                    <circle class="ng-packet" r="4">
+                        <animateMotion dur="3s" repeatCount="indefinite" path="M150,120 L380,90"></animateMotion>
+                    </circle>
+                    <circle class="ng-packet" r="4">
+                        <animateMotion dur="4s" begin="1s" repeatCount="indefinite" path="M500,320 L750,290"></animateMotion>
+                    </circle>
+                    <circle class="ng-packet" r="4">
+                        <animateMotion dur="3.5s" begin="0.5s" repeatCount="indefinite" path="M250,300 L150,480"></animateMotion>
+                    </circle>
+                    <circle class="ng-packet" r="4">
+                        <animateMotion dur="5s" begin="2s" repeatCount="indefinite" path="M150,480 L450,500"></animateMotion>
+                    </circle>
+                    <circle class="ng-packet" r="4">
+                        <animateMotion dur="4.5s" begin="1.5s" repeatCount="indefinite" path="M620,140 L500,320"></animateMotion>
+                    </circle>
+                </g>
 
-            <div class="line-glow line2"></div>
-
-            <div class="line-glow line3"></div>
+            </svg>
 
         </div>
 
@@ -153,15 +192,17 @@
 
             </h1>
 
-           <p class="text"
-   data-id="Portofolio ini menampilkan perjalanan belajar, keterampilan, dan pengalaman saya di dunia jaringan komputer dan teknologi."
-   data-en="This portfolio showcases my learning journey, skills, and experience in the world of computer networking and technology.">
+            <p class="text"
+               data-id="Portofolio ini menampilkan perjalanan belajar, keterampilan, dan pengalaman saya di dunia jaringan komputer dan teknologi."
+               data-en="This portfolio showcases my learning journey, skills, and experience in the world of computer networking and technology.">
 
-    Portofolio ini menampilkan perjalanan belajar,
-    keterampilan, dan pengalaman saya
-    di dunia jaringan komputer dan teknologi.
+                Portofolio ini menampilkan
+                perjalanan belajar,
+                keterampilan,
+                dan pengalaman saya
+                di dunia jaringan komputer dan teknologi.
 
-</p>
+            </p>
 
             <div class="hero-buttons">
 
@@ -230,10 +271,10 @@
             <div class="about-text">
 
                 <h3 class="text"
-                    data-id="Siswa TJKT & Teknologi"
-                    data-en="TJKT Student & Technology">
+                    data-id="Siswa Teknik Jaringan Komputer dan Telekomunikasi"
+                    data-en="Computer and Telecommunications Network Engineering Student">
 
-                    Siswa TJKT & Teknologi
+                    Siswa Teknik Jaringan Komputer dan Telekomunikasi
 
                 </h3>
 
@@ -251,17 +292,17 @@
 
                 </p>
 
-                 <p class="text"
+                <p class="text"
                    data-id="Memiliki sertifikasi Cisco Networking Academy Networking Basics dan Certificate of Completion AI Ready ASEAN, serta terus mengembangkan kemampuan melalui proyek sekolah dan eksplorasi teknologi."
                    data-en="Certified in Cisco Networking Academy Networking Basics and Certificate of Completion AI Ready ASEAN, and continuously improving my skills through school projects and technology exploration.">
- 
+
                     Memiliki sertifikasi
                     Cisco Networking Academy Networking Basics
                     dan Certificate of Completion AI Ready ASEAN,
                     serta terus mengembangkan kemampuan
                     melalui proyek sekolah
                     dan eksplorasi teknologi.
- 
+
                 </p>
 
                 <div class="about-cards">
@@ -324,7 +365,7 @@
 
         <div class="experience-grid">
 
-            <div class="exp-card">
+            <div class="exp-card" data-tilt>
 
                 <div class="exp-line"></div>
 
@@ -343,7 +384,7 @@
 
             </div>
 
-            <div class="exp-card">
+            <div class="exp-card" data-tilt>
 
                 <div class="exp-line"></div>
 
@@ -362,7 +403,7 @@
 
             </div>
 
-            <div class="exp-card">
+            <div class="exp-card" data-tilt>
 
                 <div class="exp-line"></div>
 
@@ -381,7 +422,7 @@
 
             </div>
 
-            <div class="exp-card">
+            <div class="exp-card" data-tilt>
 
                 <div class="exp-line"></div>
 
@@ -400,7 +441,7 @@
 
             </div>
 
-            <div class="exp-card">
+            <div class="exp-card" data-tilt>
 
                 <div class="exp-line"></div>
 
@@ -449,7 +490,7 @@
 
         <div class="skills-grid">
 
-            <div class="skill-card">
+            <div class="skill-card" data-tilt>
 
                 <i class="fa-solid fa-network-wired"></i>
 
@@ -459,7 +500,7 @@
 
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card" data-tilt>
 
                 <i class="fa-solid fa-server"></i>
 
@@ -469,7 +510,7 @@
 
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card" data-tilt>
 
                 <i class="fa-solid fa-magnifying-glass-chart"></i>
 
@@ -481,7 +522,7 @@
 
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card" data-tilt>
 
                 <i class="fa-solid fa-shield-halved"></i>
 
@@ -521,7 +562,7 @@
 
         <div class="certificate-box">
 
-            <div class="certificate-image">
+            <div class="certificate-image" data-tilt>
 
                 <img src="images/Certificate.jpg" alt="Certificate Networking Basics">
 
@@ -543,7 +584,7 @@
 
         <div class="certificate-box" style="margin-top:70px;">
 
-            <div class="certificate-image">
+            <div class="certificate-image" data-tilt>
 
                 <img src="images/Certificate AI.png" alt="Certificate AI">
 
@@ -595,7 +636,7 @@
 
         <div class="contact-grid">
 
-            <a href="mailto:azwanakbar864@gmail.com" class="contact-card">
+            <a href="mailto:azwanakbar864@gmail.com" class="contact-card" data-tilt>
 
                 <i class="fa-solid fa-envelope"></i>
 
@@ -607,7 +648,7 @@
 
             <a href="https://www.instagram.com/_wanzzyy?igsh=dnc1YmhkdHEwYjV4"
                target="_blank"
-               class="contact-card">
+               class="contact-card" data-tilt>
 
                 <i class="fa-brands fa-instagram"></i>
 
@@ -619,7 +660,7 @@
 
             <a href="https://azwanakbar.blogspot.com/"
                target="_blank"
-               class="contact-card">
+               class="contact-card" data-tilt>
 
                 <i class="fa-brands fa-blogger-b"></i>
 
@@ -631,7 +672,7 @@
 
             <a href="https://azwanakbarasj.blogspot.com/"
                target="_blank"
-               class="contact-card">
+               class="contact-card" data-tilt>
 
                 <i class="fa-brands fa-blogger-b"></i>
 

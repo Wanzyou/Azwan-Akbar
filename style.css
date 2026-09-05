@@ -222,88 +222,6 @@ nav{
     pointer-events:none;
 }
 
-.glass-cube{
-    position:absolute;
-    border-radius:30px;
-
-    background:rgba(255,255,255,0.03);
-
-    border:1px solid rgba(255,255,255,0.06);
-
-    backdrop-filter:blur(20px);
-}
-
-.cube1{
-    width:220px;
-    height:220px;
-    top:14%;
-    left:10%;
-    transform:rotate(28deg);
-
-    animation:float1 8s ease-in-out infinite;
-}
-
-.cube2{
-    width:170px;
-    height:170px;
-    bottom:15%;
-    right:12%;
-    transform:rotate(-18deg);
-
-    animation:float2 10s ease-in-out infinite;
-}
-
-.floating-circle{
-    position:absolute;
-
-    width:500px;
-    height:500px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(56,189,248,0.12);
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    animation:rotateCircle 18s linear infinite;
-}
-
-.line-glow{
-    position:absolute;
-    height:2px;
-
-    background:
-    linear-gradient(
-    90deg,
-    transparent,
-    #38bdf8,
-    transparent
-    );
-
-    opacity:0.4;
-}
-
-.line1{
-    width:260px;
-    top:20%;
-    left:20%;
-}
-
-.line2{
-    width:220px;
-    bottom:25%;
-    right:18%;
-}
-
-.line3{
-    width:180px;
-    top:60%;
-    left:45%;
-}
-
 /* ========================= */
 /* HERO CONTENT */
 /* ========================= */
@@ -722,50 +640,6 @@ footer{
 /* ANIMATION */
 /* ========================= */
 
-@keyframes float1{
-
-    0%{
-        transform:translateY(0) rotate(28deg);
-    }
-
-    50%{
-        transform:translateY(-30px) rotate(34deg);
-    }
-
-    100%{
-        transform:translateY(0) rotate(28deg);
-    }
-
-}
-
-@keyframes float2{
-
-    0%{
-        transform:translateY(0) rotate(-18deg);
-    }
-
-    50%{
-        transform:translateY(30px) rotate(-10deg);
-    }
-
-    100%{
-        transform:translateY(0) rotate(-18deg);
-    }
-
-}
-
-@keyframes rotateCircle{
-
-    from{
-        transform:translate(-50%,-50%) rotate(0deg);
-    }
-
-    to{
-        transform:translate(-50%,-50%) rotate(360deg);
-    }
-
-}
-
 @keyframes rotateRing{
 
     from{
@@ -1067,4 +941,194 @@ img{
 .contact-card{
     transform:translateZ(0);
     backface-visibility:hidden;
+}
+
+/* ========================================= */
+/* 3D UPGRADE — NETWORK GRAPH HERO           */
+/* ========================================= */
+
+.hero-3d{
+    perspective:1400px;
+}
+
+.network-graph{
+    width:100%;
+    height:100%;
+    opacity:0.85;
+}
+
+.ng-edges line{
+    stroke:#38bdf8;
+    stroke-width:1.2;
+    stroke-opacity:0.18;
+}
+
+.ng-node{
+    fill:#38bdf8;
+    filter:drop-shadow(0 0 6px rgba(56,189,248,0.85));
+    transform-box:fill-box;
+    transform-origin:center;
+    animation:nodePulse 3.6s ease-in-out infinite;
+}
+
+.ng-node:nth-child(1){ animation-delay:0s; }
+.ng-node:nth-child(2){ animation-delay:0.3s; }
+.ng-node:nth-child(3){ animation-delay:0.6s; }
+.ng-node:nth-child(4){ animation-delay:0.9s; }
+.ng-node:nth-child(5){ animation-delay:1.2s; }
+.ng-node:nth-child(6){ animation-delay:1.5s; }
+.ng-node:nth-child(7){ animation-delay:1.8s; }
+.ng-node:nth-child(8){ animation-delay:2.1s; }
+.ng-node:nth-child(9){ animation-delay:2.4s; }
+.ng-node:nth-child(10){ animation-delay:2.7s; }
+
+@keyframes nodePulse{
+
+    0%,100%{
+        opacity:0.55;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3);
+    }
+
+}
+
+.ng-packet{
+    fill:#e0f7ff;
+    filter:drop-shadow(0 0 8px rgba(224,247,255,0.95));
+}
+
+/* ========================================= */
+/* 3D UPGRADE — TILT CARDS                   */
+/* ========================================= */
+
+.experience-grid,
+.skills-grid,
+.contact-grid{
+    perspective:1200px;
+}
+
+.certificate-box{
+    perspective:1200px;
+}
+
+[data-tilt]{
+    transform-style:preserve-3d;
+    will-change:transform;
+    transition:transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+
+.exp-card[data-tilt]:hover,
+.skill-card[data-tilt]:hover,
+.contact-card[data-tilt]:hover,
+.certificate-image[data-tilt]:hover{
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.45),
+    0 0 45px rgba(56,189,248,0.18);
+}
+
+.exp-card[data-tilt] h3,
+.exp-card[data-tilt] .exp-line{
+    transform:translateZ(35px);
+}
+
+.skill-card[data-tilt] i{
+    transform:translateZ(50px);
+    transition:transform 0.15s ease-out;
+}
+
+.skill-card[data-tilt] h3{
+    transform:translateZ(30px);
+}
+
+.contact-card[data-tilt] i{
+    transform:translateZ(40px);
+}
+
+.certificate-image[data-tilt] img{
+    transform:translateZ(25px);
+}
+
+/* ========================================= */
+/* 3D UPGRADE — HERO ENTRANCE (single pass)  */
+/* ========================================= */
+
+.hero-badge{
+    opacity:0;
+    animation:heroRise 0.8s ease forwards;
+    animation-delay:0.1s;
+}
+
+.hero-content h1{
+    opacity:0;
+    animation:heroRise 0.9s ease forwards;
+    animation-delay:0.3s;
+}
+
+.hero-content p{
+    opacity:0;
+    animation:heroRise 0.9s ease forwards;
+    animation-delay:0.5s;
+}
+
+.hero-buttons{
+    opacity:0;
+    animation:heroRise 0.9s ease forwards;
+    animation-delay:0.7s;
+}
+
+@keyframes heroRise{
+
+    from{
+        opacity:0;
+        transform:translateY(24px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* ========================================= */
+/* 3D UPGRADE — REDUCED MOTION SAFETY        */
+/* ========================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    .ng-node,
+    .hero-badge,
+    .hero-content h1,
+    .hero-content p,
+    .hero-buttons{
+        animation:none !important;
+        opacity:1 !important;
+        transform:none !important;
+    }
+
+    .ng-packet animateMotion,
+    [data-tilt]{
+        transition:none !important;
+    }
+
+}
+
+/* ========================================= */
+/* 3D UPGRADE — MOBILE SIMPLIFICATION        */
+/* ========================================= */
+
+@media(max-width:768px){
+
+    [data-tilt]{
+        transform:none !important;
+    }
+
+    .ng-node{
+        animation-duration:4.2s;
+    }
+
 }
