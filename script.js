@@ -83,6 +83,55 @@ panelNavTriggers.forEach(link => {
 
 });
 
+// LIGHTBOX — click image to enlarge
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxClose = document.getElementById("lightboxClose");
+const lightboxTriggers = document.querySelectorAll("[data-lightbox]");
+
+function openLightbox(src, alt){
+
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightbox.classList.add("active");
+
+}
+
+function closeLightbox(){
+
+    lightbox.classList.remove("active");
+
+}
+
+lightboxTriggers.forEach(img => {
+
+    img.addEventListener("click", () => {
+
+        openLightbox(img.getAttribute("src"), img.getAttribute("alt"));
+
+    });
+
+});
+
+if(lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+
+if(lightbox){
+
+    lightbox.addEventListener("click", (e) => {
+
+        if(e.target === lightbox) closeLightbox();
+
+    });
+
+}
+
+document.addEventListener("keydown", (e) => {
+
+    if(e.key === "Escape") closeLightbox();
+
+});
+
 // CURSOR EFFECT
 
 const cursor = document.querySelector(".cursor-light");
