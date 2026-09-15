@@ -7,7 +7,7 @@ let currentIndex = panels.findIndex(p => p.classList.contains("active"));
 if(currentIndex === -1) currentIndex = 0;
 
 const reduceMotionNav = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const TRANSITION_MS = reduceMotionNav ? 0 : 850;
+const TRANSITION_MS = reduceMotionNav ? 0 : 950;
 
 function setActiveLink(id){
 

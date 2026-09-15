@@ -542,48 +542,11 @@ nav{
     align-items:center;
 }
 
-.certificate-image{
-    position:relative;
-    overflow:hidden;
-    border-radius:35px;
-}
-
 .certificate-image img{
     width:100%;
     border-radius:35px;
 
     border:1px solid rgba(255,255,255,0.06);
-}
-
-.certificate-image img.lightbox-trigger{
-    transition:transform 0.4s ease;
-}
-
-.certificate-image:hover img.lightbox-trigger{
-    transform:translateZ(25px) scale(1.06);
-}
-
-.zoom-hint{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(5,8,22,0.45);
-    opacity:0;
-    transition:opacity 0.3s ease;
-    pointer-events:none;
-    border-radius:35px;
-}
-
-.zoom-hint i{
-    font-size:34px;
-    color:#38bdf8;
-    filter:drop-shadow(0 0 12px rgba(56,189,248,0.6));
-}
-
-.certificate-image:hover .zoom-hint{
-    opacity:1;
 }
 
 .certificate-info h3{
@@ -1178,6 +1141,11 @@ html, body{
     height:100%;
     overflow:hidden;
     overscroll-behavior:none;
+    touch-action:none;
+}
+
+.panel-inner{
+    touch-action:pan-y;
 }
 
 body{
@@ -1200,37 +1168,42 @@ body{
     opacity:0;
     pointer-events:none;
     z-index:1;
-    perspective:1800px;
-    transform:translateX(0) rotateY(0deg) scale(1);
-    transition:transform 0.85s cubic-bezier(0.65,0,0.35,1), opacity 0.6s ease;
+    filter:blur(0px);
+    transform:perspective(1800px) translateX(0) rotateY(0deg) scale(1);
+    transition:transform 0.9s cubic-bezier(0.76,0,0.24,1), opacity 0.7s ease, filter 0.7s ease;
 }
 
 .panel.active{
     opacity:1;
     pointer-events:auto;
     z-index:5;
-    transform:translateX(0) rotateY(0deg) scale(1);
+    filter:blur(0px);
+    transform:perspective(1800px) translateX(0) rotateY(0deg) scale(1);
 }
 
 .panel.enter-from-right{
-    transform:translateX(55%) rotateY(35deg) scale(0.82);
+    transform:perspective(1800px) translateX(55%) rotateY(35deg) scale(0.82);
     opacity:0;
+    filter:blur(6px);
 }
 
 .panel.enter-from-left{
-    transform:translateX(-55%) rotateY(-35deg) scale(0.82);
+    transform:perspective(1800px) translateX(-55%) rotateY(-35deg) scale(0.82);
     opacity:0;
+    filter:blur(6px);
 }
 
 .panel.exit-to-left{
-    transform:translateX(-55%) rotateY(-35deg) scale(0.82);
+    transform:perspective(1800px) translateX(-55%) rotateY(-35deg) scale(0.82);
     opacity:0;
+    filter:blur(6px);
     z-index:3;
 }
 
 .panel.exit-to-right{
-    transform:translateX(55%) rotateY(35deg) scale(0.82);
+    transform:perspective(1800px) translateX(55%) rotateY(35deg) scale(0.82);
     opacity:0;
+    filter:blur(6px);
     z-index:3;
 }
 
@@ -1561,4 +1534,28 @@ body{
         font-size:30px;
     }
 
+}
+
+/* ========================================= */
+/* PROFESSIONAL POLISH — FOCUS & SMOOTHING   */
+/* ========================================= */
+
+.nav-menu a:focus-visible,
+.lang-btn:focus-visible,
+.btn:focus-visible,
+.btn-outline:focus-visible,
+.contact-card:focus-visible,
+.lightbox-close:focus-visible{
+    outline:2px solid #38bdf8;
+    outline-offset:4px;
+    border-radius:6px;
+}
+
+img{
+    -webkit-user-drag:none;
+    user-select:none;
+}
+
+* {
+    -webkit-tap-highlight-color:transparent;
 }
