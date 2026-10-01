@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#0a0f1e">
+<meta name="theme-color" content="#050816">
 <meta name="description" content="Portfolio Azwan Zahraan Akbar, Future Network Engineer & IT Enthusiast.">
 <title>Azwan Zahraan Akbar | Portfolio</title>
 
@@ -14,13 +14,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 
-<!-- Set theme before first paint (no flash) -->
 <script>
 (function(){
   var r=document.documentElement,t=null;
   r.classList.add('js');
   try{t=localStorage.getItem('theme')}catch(e){}
-  if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}
+  if(t!=='light'&&t!=='dark'){t='dark'}
   r.setAttribute('data-theme',t);
 })();
 </script>
@@ -28,7 +27,15 @@
 
 <body>
 <a class="skip" href="#main" data-en="Skip to content">Lewati ke konten</a>
-<div class="backdrop" aria-hidden="true"></div>
+
+<!-- SPACE BACKGROUND -->
+<div class="sky" aria-hidden="true">
+  <div class="nebula"></div>
+  <canvas id="stars"></canvas>
+  <div class="bgp bgp-1" data-depth="26"><span class="orb"></span></div>
+  <div class="bgp bgp-2" data-depth="-18"><span class="orb"></span><span class="bgring"></span></div>
+  <div class="bgp bgp-3" data-depth="40"><span class="orb"></span></div>
+</div>
 
 <!-- HEADER -->
 <header class="header" id="header">
@@ -38,6 +45,7 @@
     <nav class="nav" id="nav" aria-label="Menu">
       <a href="#home" class="active" data-en="Home">Home</a>
       <a href="#about" data-en="About">Tentang</a>
+      <a href="#journey" data-en="Journey">Perjalanan</a>
       <a href="#experience" data-en="Experience">Pengalaman</a>
       <a href="#skills" data-en="Skills">Keterampilan</a>
       <a href="#certificate" data-en="Certificate">Sertifikat</a>
@@ -75,17 +83,12 @@
       </div>
     </div>
 
-    <!-- 4D tesseract -->
     <div class="scene" aria-hidden="true">
-      <div class="tilt">
-        <div class="spin">
-          <div class="cube c1"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="cube c2"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="cube c3"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="ring r1"></div>
-          <div class="ring r2"></div>
-          <div class="core"></div>
-        </div>
+      <div class="planet-wrap">
+        <div class="orbit"><span class="moon"></span></div>
+        <div class="ring ring-back"></div>
+        <div class="planet"></div>
+        <div class="ring ring-front"></div>
       </div>
     </div>
   </div>
@@ -94,28 +97,37 @@
 <!-- ABOUT -->
 <section id="about" class="section">
   <div class="wrap reveal">
-    <header class="sec-head">
-      <h2 data-en="About me">Tentang saya</h2>
-    </header>
+    <header class="sec-head"><h2 data-en="About me">Tentang saya</h2></header>
     <div class="about">
       <figure class="photo">
         <img src="images/Foto.jpeg" alt="Azwan Zahraan Akbar" width="640" height="800" loading="lazy" data-lightbox>
       </figure>
       <div class="about-text">
-        <h3 data-en="Azwan Zahraan Akbar">Azwan Zahraan Akbar</h3>
+        <h3>Azwan Zahraan Akbar</h3>
         <p data-en="I am a vocational high school graduate in Computer and Telecommunications Network Engineering, with a strong interest in computer networking, Cisco, MikroTik, and modern technology.">Saya adalah seorang lulusan SMK di bidang Teknik Jaringan Komputer dan Telekomunikasi, dengan minat besar pada jaringan komputer, Cisco, MikroTik, dan teknologi modern.</p>
         <p data-en="Certified in Cisco Networking Academy Networking Basics and holding a Certificate of Completion in AI Ready ASEAN, I keep growing through projects and technology exploration.">Memiliki sertifikasi Cisco Networking Academy Networking Basics dan Certificate of Completion AI Ready ASEAN, serta terus berkembang melalui proyek dan eksplorasi teknologi.</p>
         <div class="facts">
           <div class="card fact"><span data-en="Location">Lokasi</span><strong>Bandung, Indonesia</strong></div>
-          <div class="card fact"><span data-en="Education">Pendidikan</span><strong data-en="Vocational graduate, Network Engineering">Lulusan SMK, Teknik Jaringan</strong></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- JOURNEY -->
+<section id="journey" class="section">
+  <div class="wrap reveal">
+    <header class="sec-head"><h2 data-en="Journey">Perjalanan</h2></header>
+    <article class="card edu-card">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <h3>SMKN 13 Bandung</h3>
+      <p class="edu-year">2027</p>
+    </article>
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
-<section id="experience" class="section alt">
+<section id="experience" class="section">
   <div class="wrap reveal">
     <header class="sec-head">
       <h2 data-en="Experience">Pengalaman</h2>
@@ -138,17 +150,18 @@
       <h2 data-en="Skills">Keterampilan</h2>
       <p data-en="Professional skills">Kemampuan profesional</p>
     </header>
-    <div class="grid-4">
+    <div class="skills-flex">
       <div class="card tilt-card center"><i class="fa-solid fa-network-wired"></i><h3>Cisco</h3></div>
       <div class="card tilt-card center"><i class="fa-solid fa-server"></i><h3>MikroTik</h3></div>
       <div class="card tilt-card center"><i class="fa-solid fa-magnifying-glass-chart"></i><h3 data-en="Network Troubleshooting">Troubleshooting Jaringan</h3></div>
       <div class="card tilt-card center"><i class="fa-solid fa-headset"></i><h3>IT Support</h3></div>
+      <div class="card tilt-card center"><i class="fa-solid fa-shield-halved"></i><h3 data-en="Basic Cybersecurity">Cybersecurity Dasar</h3></div>
     </div>
   </div>
 </section>
 
 <!-- CERTIFICATE -->
-<section id="certificate" class="section alt">
+<section id="certificate" class="section">
   <div class="wrap reveal">
     <header class="sec-head">
       <h2 data-en="Certificates">Sertifikat</h2>
@@ -185,9 +198,6 @@
 
 </main>
 
-<footer class="footer">© <span id="year">2026</span> Azwan Zahraan Akbar</footer>
-
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Preview">
   <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
   <img id="lbImg" src="" alt="">
