@@ -42,7 +42,7 @@
   enBtn.addEventListener('click', function () { setLang('en'); });
   setLang(store.get('lang') === 'en' ? 'en' : 'id');
 
-  /* ---------- MOBILE / COMPACT NAV ---------- */
+  /* ---------- MOBILE NAV ---------- */
   var nav = $('#nav'), burger = $('#burger');
   function toggleNav(open) {
     nav.classList.toggle('open', open);
@@ -52,64 +52,128 @@
     e.stopPropagation();
     toggleNav(!nav.classList.contains('open'));
   });
-  $$('a', nav).forEach(function (a) { a.addEventListener('click', function () { toggleNav(false); }); });
   document.addEventListener('click', function (e) {
     if (nav.classList.contains('open') && !nav.contains(e.target)) toggleNav(false);
   });
   window.addEventListener('resize', function () { if (window.innerWidth > 1080) toggleNav(false); });
 
-  /* ---------- SCROLL SPY + REVEAL ---------- */
-  var links = $$('a', nav);
-  if ('IntersectionObserver' in window) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        links.forEach(function (l) {
-          l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id);
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    $$('main section[id]').forEach(function (s) { spy.observe(s); });
+  /* ---------- PAGES: satu layar per menu, tanpa scroll antar menu ---------- */
+  var pages = $$('main > section[id]');
+  var navLinks = $$('a', nav);
+  var cur = -1;
 
-    var rv = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('in'); rv.unobserve(en.target); }
-      });
-    }, { threshold: 0.05 });
-    $$('.reveal').forEach(function (el) { rv.observe(el); });
-  } else {
-    $$('.reveal').forEach(function (el) { el.classList.add('in'); });
+  var dock = document.createElement('div');
+  dock.className = 'dock';
+  dock.setAttribute('aria-label', 'Pages');
+  var dots = pages.map(function (p, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', p.id);
+    b.addEventListener('click', function () { go(i, true); });
+    dock.appendChild(b);
+    return b;
+  });
+  document.body.appendChild(dock);
+
+  function indexOf(id) {
+    for (var i = 0; i < pages.length; i++) if (pages[i].id === id) return i;
+    return -1;
   }
 
-  /* ---------- STARFIELD ---------- */
+  function go(i, push) {
+    if (i < 0 || i >= pages.length || i === cur) return;
+    cur = i;
+    pages.forEach(function (p, n) {
+      var on = n === i;
+      p.classList.toggle('is-active', on);
+      p.setAttribute('aria-hidden', String(!on));
+      if (on) p.scrollTop = 0;
+    });
+    var id = pages[i].id;
+    navLinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + id); });
+    dots.forEach(function (d, n) { d.setAttribute('aria-current', String(n === i)); });
+    if (push) { try { history.pushState(null, '', '#' + id); } catch (e) {} }
+    toggleNav(false);
+  }
+
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var i = indexOf(a.getAttribute('href').slice(1));
+      if (i < 0) return;
+      e.preventDefault();
+      go(i, true);
+    });
+  });
+  window.addEventListener('hashchange', function () {
+    var i = indexOf(location.hash.slice(1));
+    if (i >= 0) go(i, false);
+  });
+  go(Math.max(0, indexOf(location.hash.slice(1))), false);
+
+  /* ---------- STARFIELD + CONSTELLATION ---------- */
   var cv = $('#stars'), ctx = cv && cv.getContext ? cv.getContext('2d') : null;
-  var stars = [], W = 0, H = 0, shoot = null, nextShoot = 0;
+  var stars = [], W = 0, H = 0, shoot = null, nextShoot = 0, px = -9999, py = -9999;
+  var LINK = 130;
 
   function sizeStars() {
     if (!ctx) return;
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
     var w = window.innerWidth, h = window.innerHeight;
-    if (W && w === W && Math.abs(h - H) < 150) return; // ignore mobile URL-bar resize
+    if (W && w === W && Math.abs(h - H) < 150) return;
     W = w; H = h;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var n = Math.round(Math.min(240, (W * H) / 7500));
+    var n = Math.round(Math.min(200, (W * H) / 8000));
+    var nodes = Math.round(Math.min(70, (W * H) / 20000));
     stars = [];
     for (var i = 0; i < n; i++) {
-      stars.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.3 + 0.25,
-                   p: Math.random() * 6.28, s: Math.random() * 0.0018 + 0.0006, a: Math.random() * 0.55 + 0.35 });
+      var node = i < nodes;
+      stars.push({
+        x: Math.random() * W, y: Math.random() * H,
+        r: node ? Math.random() * 1 + 0.9 : Math.random() * 1.1 + 0.2,
+        p: Math.random() * 6.28, s: Math.random() * 0.0018 + 0.0006, a: Math.random() * 0.5 + 0.35,
+        node: node,
+        vx: node ? (Math.random() - 0.5) * 0.12 : 0,
+        vy: node ? (Math.random() - 0.5) * 0.12 : 0
+      });
     }
     drawStars(0);
   }
 
   function drawStars(t) {
     ctx.clearRect(0, 0, W, H);
-    for (var i = 0; i < stars.length; i++) {
-      var st = stars[i];
-      var al = reduce ? st.a : st.a * (0.55 + 0.45 * Math.sin(t * st.s * 6 + st.p));
-      ctx.globalAlpha = al;
-      ctx.fillStyle = i % 9 === 0 ? '#bcd0ff' : '#ffffff';
+    var i, j, a, b, dx, dy, d, st;
+    for (i = 0; i < stars.length; i++) {
+      st = stars[i];
+      if (st.node && !reduce) {
+        st.x += st.vx; st.y += st.vy;
+        if (st.x < 0 || st.x > W) st.vx *= -1;
+        if (st.y < 0 || st.y > H) st.vy *= -1;
+      }
+      ctx.globalAlpha = reduce ? st.a : st.a * (0.55 + 0.45 * Math.sin(t * st.s * 6 + st.p));
+      ctx.fillStyle = st.node ? '#e0c28f' : (i % 9 === 0 ? '#bcd0ff' : '#ffffff');
       ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832); ctx.fill();
+    }
+    ctx.lineWidth = 0.7;
+    for (i = 0; i < stars.length; i++) {
+      a = stars[i];
+      if (!a.node) break;
+      for (j = i + 1; j < stars.length; j++) {
+        b = stars[j];
+        if (!b.node) break;
+        dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy;
+        if (d < LINK * LINK) {
+          ctx.globalAlpha = (1 - Math.sqrt(d) / LINK) * 0.35;
+          ctx.strokeStyle = '#a9bdff';
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      dx = a.x - px; dy = a.y - py; d = dx * dx + dy * dy;
+      if (d < 180 * 180) {
+        ctx.globalAlpha = (1 - Math.sqrt(d) / 180) * 0.55;
+        ctx.strokeStyle = '#e0c28f';
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(px, py); ctx.stroke();
+      }
     }
     if (shoot) {
       var life = (t - shoot.t0) / shoot.dur;
@@ -131,7 +195,7 @@
     if (document.hidden || root.getAttribute('data-theme') === 'light') return;
     if (!shoot && t > nextShoot) {
       shoot = { x: Math.random() * W * 0.7, y: Math.random() * H * 0.4, dx: 280 + Math.random() * 200, dy: 120 + Math.random() * 90, t0: t, dur: 900 };
-      nextShoot = t + 6000 + Math.random() * 8000;
+      nextShoot = t + 7000 + Math.random() * 9000;
     }
     drawStars(t);
   }
@@ -142,26 +206,21 @@
     if (!reduce) { nextShoot = 3000; requestAnimationFrame(loop); }
   }
 
-  /* ---------- PARALLAX (background planets) + 3D POINTER EFFECTS ---------- */
+  /* ---------- POINTER PARALLAX + CARD TILT ---------- */
   var bgps = $$('.bgp'), mx = 0, my = 0, ticking = false;
   function par() {
     ticking = false;
-    var sy = window.pageYOffset || 0;
     bgps.forEach(function (el) {
       var d = parseFloat(el.getAttribute('data-depth')) || 0;
-      var y = Math.max(-220, Math.min(220, -sy * d / 700)) + my * d;
-      el.style.transform = 'translate3d(' + (mx * d).toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+      el.style.transform = 'translate3d(' + (mx * d).toFixed(1) + 'px,' + (my * d).toFixed(1) + 'px,0)';
     });
   }
   function reqPar() { if (!ticking) { ticking = true; requestAnimationFrame(par); } }
-  if (!reduce) {
-    window.addEventListener('scroll', reqPar, { passive: true });
-    par();
-  }
 
   if (fine && !reduce) {
     var wrap = $('.planet-wrap');
     document.addEventListener('pointermove', function (e) {
+      px = e.clientX; py = e.clientY;
       mx = e.clientX / window.innerWidth - 0.5;
       my = e.clientY / window.innerHeight - 0.5;
       if (wrap) {
@@ -170,14 +229,15 @@
       }
       reqPar();
     }, { passive: true });
+    document.addEventListener('pointerleave', function () { px = py = -9999; });
 
     $$('.tilt-card').forEach(function (card) {
       card.addEventListener('pointermove', function (e) {
         var r = card.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5;
         var y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.setProperty('--ty', (x * 10).toFixed(1) + 'deg');
-        card.style.setProperty('--tx', (-y * 10).toFixed(1) + 'deg');
+        card.style.setProperty('--ty', (x * 8).toFixed(1) + 'deg');
+        card.style.setProperty('--tx', (-y * 8).toFixed(1) + 'deg');
       });
       card.addEventListener('pointerleave', function () {
         card.style.setProperty('--ty', '0deg');
@@ -205,14 +265,12 @@
     lbImg.alt = img.alt || '';
     lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('lock');
     lbClose.focus();
   }
   function closeLb() {
     if (!lb.classList.contains('open')) return;
     lb.classList.remove('open');
     lb.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('lock');
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
   $$('img[data-lightbox]').forEach(function (img) {
@@ -221,9 +279,9 @@
   lbClose.addEventListener('click', closeLb);
   lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { closeLb(); toggleNav(false); }
+    if (e.key === 'Escape') { closeLb(); toggleNav(false); return; }
+    if (lb.classList.contains('open')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') go(cur + 1, true);
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(cur - 1, true);
   });
-
-  var y = $('#year');
-  if (y) y.textContent = new Date().getFullYear();
 })();
