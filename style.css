@@ -354,3 +354,11 @@ main>section.exit-to-right{transform:translateX(55%) rotateY(35deg) scale(.82);o
 [data-theme="light"] .lv.mid{color:#047857;background:rgba(16,185,129,.16)}
 [data-theme="light"] .lv.beg{color:#1d4ed8;background:rgba(59,130,246,.14)}
 .photo{width:clamp(104px,18vh,150px)}
+
+
+/* ===== POLISH: skills & photo ===== */
+.skillbox{display:flex;flex-direction:column}
+.skill-grid{flex:1;grid-auto-rows:1fr}
+.skill{justify-content:center;min-width:0}
+.skill span{overflow-wrap:anywhere}
+.photo img{max-width:none;display:block}
