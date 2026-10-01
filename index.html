@@ -42,7 +42,6 @@
       <a href="#about" data-en="About">Tentang</a>
       <a href="#journey" data-en="Journey">Perjalanan</a>
       <a href="#experience" data-en="Experience">Pengalaman</a>
-      <a href="#skills" data-en="Skills">Keterampilan</a>
       <a href="#certificate" data-en="Certificate">Sertifikat</a>
       <a href="#contact" data-en="Contact">Kontak</a>
     </nav>
@@ -78,13 +77,33 @@
       </div>
     </div>
 
-    <div class="scene" aria-hidden="true">
-      <div class="planet-wrap">
-        <div class="orbit"><span class="moon"></span></div>
-        <div class="ring ring-back"></div>
-        <div class="planet"></div>
-        <div class="ring ring-front"></div>
-      </div>
+    <div class="netviz" aria-hidden="true">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs><radialGradient id="hubg"><stop offset="0" style="stop-color:var(--ac)" stop-opacity=".5"/><stop offset="1" style="stop-color:var(--ac)" stop-opacity="0"/></radialGradient></defs>
+        <circle cx="200" cy="200" r="190" fill="url(#hubg)"/>
+        <circle class="nv-ring r1" cx="200" cy="200" r="150"/>
+        <circle class="nv-ring r2" cx="200" cy="200" r="80"/>
+        <g class="nv-lines">
+          <line x1="200" y1="50" x2="330" y2="125"/><line x1="330" y1="125" x2="330" y2="275"/><line x1="330" y1="275" x2="200" y2="350"/>
+          <line x1="200" y1="350" x2="70" y2="275"/><line x1="70" y1="275" x2="70" y2="125"/><line x1="70" y1="125" x2="200" y2="50"/>
+          <line x1="200" y1="200" x2="200" y2="120"/><line x1="200" y1="200" x2="269" y2="240"/><line x1="200" y1="200" x2="131" y2="240"/>
+          <line x1="200" y1="120" x2="200" y2="50"/><line x1="200" y1="120" x2="330" y2="125"/><line x1="200" y1="120" x2="70" y2="125"/>
+          <line x1="269" y1="240" x2="330" y2="275"/><line x1="269" y1="240" x2="200" y2="350"/><line x1="131" y1="240" x2="70" y2="275"/><line x1="131" y1="240" x2="200" y2="350"/>
+        </g>
+        <g class="nv-nodes">
+          <circle class="nv-halo" cx="200" cy="50" r="15"/><circle class="nv-halo d2" cx="330" cy="125" r="15"/><circle class="nv-halo d3" cx="330" cy="275" r="15"/>
+          <circle class="nv-halo d4" cx="200" cy="350" r="15"/><circle class="nv-halo d5" cx="70" cy="275" r="15"/><circle class="nv-halo d6" cx="70" cy="125" r="15"/>
+          <circle class="nv-n" cx="200" cy="50" r="8"/><circle class="nv-n" cx="330" cy="125" r="8"/><circle class="nv-n" cx="330" cy="275" r="8"/>
+          <circle class="nv-n" cx="200" cy="350" r="8"/><circle class="nv-n" cx="70" cy="275" r="8"/><circle class="nv-n" cx="70" cy="125" r="8"/>
+          <circle class="nv-n sm" cx="200" cy="120" r="6"/><circle class="nv-n sm" cx="269" cy="240" r="6"/><circle class="nv-n sm" cx="131" cy="240" r="6"/>
+          <circle class="nv-hub-halo" cx="200" cy="200" r="30"/><circle class="nv-hub" cx="200" cy="200" r="22"/><circle class="nv-core" cx="200" cy="200" r="8"/>
+        </g>
+        <circle class="nv-pk" r="3"><animateMotion dur="2.6s" repeatCount="indefinite" path="M200,200 L200,120 L200,50"/></circle>
+        <circle class="nv-pk" r="3"><animateMotion dur="3.2s" begin="-1s" repeatCount="indefinite" path="M200,200 L269,240 L330,275"/></circle>
+        <circle class="nv-pk" r="3"><animateMotion dur="3s" begin="-2s" repeatCount="indefinite" path="M200,200 L131,240 L70,275"/></circle>
+        <circle class="nv-pk" r="3"><animateMotion dur="4s" begin="-.5s" repeatCount="indefinite" path="M330,125 L200,120 L70,125"/></circle>
+        <circle class="nv-pk" r="3"><animateMotion dur="3.6s" begin="-1.5s" repeatCount="indefinite" path="M200,350 L269,240 L200,200"/></circle>
+      </svg>
     </div>
   </div>
 </section>
@@ -94,17 +113,29 @@
   <div class="wrap reveal">
     <header class="sec-head"><h2 data-en="About me">Tentang saya</h2></header>
     <div class="about">
-      <figure class="photo">
-        <img src="images/Foto.jpeg" alt="Azwan Zahraan Akbar" width="640" height="800" loading="lazy" data-lightbox>
-      </figure>
-      <div class="about-text">
-        <h3>Azwan Zahraan Akbar</h3>
+      <article class="card bio">
+        <div class="bio-top">
+          <figure class="photo">
+            <img src="images/Foto.jpeg" alt="Azwan Zahraan Akbar" width="640" height="800" loading="lazy" data-lightbox>
+          </figure>
+          <div>
+            <h3>Azwan Zahraan Akbar</h3>
+            <div class="loc"><i class="fa-solid fa-location-dot"></i><span data-en="Location">Lokasi</span>: <strong>Bandung, Indonesia</strong></div>
+          </div>
+        </div>
         <p data-en="I am a vocational high school graduate in Computer and Telecommunications Network Engineering, with a strong interest in computer networking, Cisco, MikroTik, and modern technology.">Saya adalah seorang lulusan SMK di bidang Teknik Jaringan Komputer dan Telekomunikasi, dengan minat besar pada jaringan komputer, Cisco, MikroTik, dan teknologi modern.</p>
         <p data-en="I have a solid understanding of computer networking, proven by the Cisco Networking Academy Networking Basics certification. I am active in various school projects, work with discipline and responsibility, and am highly committed to continuously learning, developing my abilities, and improving myself in information technology and computer networking.">Memiliki dasar pemahaman jaringan komputer yang dibuktikan dengan sertifikasi Cisco Networking Academy Networking Basics. Aktif dalam mengerjakan berbagai proyek sekolah, mampu bekerja secara disiplin dan bertanggung jawab, serta memiliki komitmen tinggi untuk terus belajar, mengembangkan kemampuan, dan meningkatkan kualitas diri di bidang teknologi informasi dan jaringan komputer.</p>
-        <div class="facts">
-          <div class="card fact"><span data-en="Location">Lokasi</span><strong>Bandung, Indonesia</strong></div>
+      </article>
+      <article class="card skillbox">
+        <h3 data-en="Skills">Keterampilan</h3>
+        <div class="skill-grid">
+          <div class="skill"><i class="fa-solid fa-network-wired"></i><span>Cisco</span></div>
+          <div class="skill"><i class="fa-solid fa-server"></i><span>MikroTik</span></div>
+          <div class="skill"><i class="fa-solid fa-magnifying-glass-chart"></i><span data-en="Network Troubleshooting">Troubleshooting Jaringan</span></div>
+          <div class="skill"><i class="fa-solid fa-headset"></i><span>IT Support</span></div>
+          <div class="skill"><i class="fa-solid fa-shield-halved"></i><span data-en="Basic Cybersecurity">Cybersecurity Dasar</span></div>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
@@ -134,23 +165,6 @@
       <article class="card tilt-card"><i class="fa-solid fa-sitemap"></i><h3>Cisco Packet Tracer</h3><p data-en="Built network topology simulations using Cisco Packet Tracer.">Membangun simulasi topologi jaringan menggunakan Cisco Packet Tracer.</p></article>
       <article class="card tilt-card"><i class="fa-solid fa-ethernet"></i><h3 data-en="LAN Configuration">Konfigurasi LAN</h3><p data-en="Configured LAN networks and tested connectivity.">Melakukan konfigurasi jaringan LAN dan pengujian konektivitas.</p></article>
       <article class="card tilt-card"><i class="fa-solid fa-screwdriver-wrench"></i><h3 data-en="Network Troubleshooting">Troubleshooting Jaringan</h3><p data-en="Analyzed and solved basic computer networking issues.">Menganalisis dan memperbaiki permasalahan dasar jaringan komputer.</p></article>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="section">
-  <div class="wrap reveal">
-    <header class="sec-head">
-      <h2 data-en="Skills">Keterampilan</h2>
-      <p data-en="Professional skills">Kemampuan profesional</p>
-    </header>
-    <div class="skills-flex">
-      <div class="card tilt-card center"><i class="fa-solid fa-network-wired"></i><h3>Cisco</h3></div>
-      <div class="card tilt-card center"><i class="fa-solid fa-server"></i><h3>MikroTik</h3></div>
-      <div class="card tilt-card center"><i class="fa-solid fa-magnifying-glass-chart"></i><h3 data-en="Network Troubleshooting">Troubleshooting Jaringan</h3></div>
-      <div class="card tilt-card center"><i class="fa-solid fa-headset"></i><h3>IT Support</h3></div>
-      <div class="card tilt-card center"><i class="fa-solid fa-shield-halved"></i><h3 data-en="Basic Cybersecurity">Cybersecurity Dasar</h3></div>
     </div>
   </div>
 </section>

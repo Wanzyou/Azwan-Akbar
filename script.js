@@ -62,18 +62,7 @@
   var navLinks = $$('a', nav);
   var cur = -1;
 
-  var dock = document.createElement('div');
-  dock.className = 'dock';
-  dock.setAttribute('aria-label', 'Pages');
-  var dots = pages.map(function (p, i) {
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.setAttribute('aria-label', p.id);
-    b.addEventListener('click', function () { go(i, true); });
-    dock.appendChild(b);
-    return b;
-  });
-  document.body.appendChild(dock);
+  var dots = [];
 
   function indexOf(id) {
     for (var i = 0; i < pages.length; i++) if (pages[i].id === id) return i;
