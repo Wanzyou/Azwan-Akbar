@@ -279,6 +279,23 @@
     });
   }
 
+  /* ---------- PHOTO FOCUS (crop otomatis ke wajah) ---------- */
+  $$('.photo[data-focus]').forEach(function (box) {
+    var img = $('img', box);
+    var f = box.getAttribute('data-focus').split(/\s+/).map(Number);
+    var z = parseFloat(box.getAttribute('data-zoom')) || 1;
+    function fit() {
+      var S = box.clientWidth, w = img.naturalWidth, h = img.naturalHeight;
+      if (!S || !w || !h) return;
+      var k = Math.max(S / w, S / h) * z, iw = w * k, ih = h * k;
+      var l = Math.min(0, Math.max(S - iw, S / 2 - (f[0] / 100) * iw));
+      var t = Math.min(0, Math.max(S - ih, S / 2 - (f[1] / 100) * ih));
+      img.style.cssText = 'position:absolute;max-width:none;object-fit:fill;transform:none;width:' + iw + 'px;height:' + ih + 'px;left:' + l + 'px;top:' + t + 'px';
+    }
+    if (img.complete) fit(); else img.addEventListener('load', fit);
+    window.addEventListener('resize', fit);
+  });
+
   /* ---------- IMAGE FALLBACK ---------- */
   $$('img[data-lightbox]').forEach(function (img) {
     function fail() {
