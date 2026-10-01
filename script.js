@@ -113,7 +113,7 @@
   /* ---------- STARFIELD + CONSTELLATION ---------- */
   var cv = $('#stars'), ctx = cv && cv.getContext ? cv.getContext('2d') : null;
   var stars = [], W = 0, H = 0, shoot = null, nextShoot = 0, px = -9999, py = -9999;
-  var LINK = 130;
+  var LINK = 150;
 
   function sizeStars() {
     if (!ctx) return;
@@ -123,8 +123,8 @@
     W = w; H = h;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var n = Math.round(Math.min(200, (W * H) / 8000));
-    var nodes = Math.round(Math.min(70, (W * H) / 20000));
+    var n = Math.round(Math.min(220, (W * H) / 7000));
+    var nodes = Math.round(Math.min(130, (W * H) / 11000));
     stars = [];
     for (var i = 0; i < n; i++) {
       var node = i < nodes;
@@ -151,7 +151,7 @@
         if (st.y < 0 || st.y > H) st.vy *= -1;
       }
       ctx.globalAlpha = reduce ? st.a : st.a * (0.55 + 0.45 * Math.sin(t * st.s * 6 + st.p));
-      ctx.fillStyle = st.node ? '#e0c28f' : (i % 9 === 0 ? '#bcd0ff' : '#ffffff');
+      ctx.fillStyle = st.node ? '#6ea8ff' : (i % 9 === 0 ? '#bcd0ff' : '#ffffff');
       ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832); ctx.fill();
     }
     ctx.lineWidth = 0.7;
@@ -163,15 +163,15 @@
         if (!b.node) break;
         dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy;
         if (d < LINK * LINK) {
-          ctx.globalAlpha = (1 - Math.sqrt(d) / LINK) * 0.35;
-          ctx.strokeStyle = '#a9bdff';
+          ctx.globalAlpha = (1 - Math.sqrt(d) / LINK) * 0.5;
+          ctx.strokeStyle = '#5f93ff';
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
         }
       }
       dx = a.x - px; dy = a.y - py; d = dx * dx + dy * dy;
       if (d < 180 * 180) {
         ctx.globalAlpha = (1 - Math.sqrt(d) / 180) * 0.55;
-        ctx.strokeStyle = '#e0c28f';
+        ctx.strokeStyle = '#9fc2ff';
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(px, py); ctx.stroke();
       }
     }
@@ -192,7 +192,7 @@
 
   function loop(t) {
     requestAnimationFrame(loop);
-    if (document.hidden || root.getAttribute('data-theme') === 'light') return;
+    if (document.hidden) return;
     if (!shoot && t > nextShoot) {
       shoot = { x: Math.random() * W * 0.7, y: Math.random() * H * 0.4, dx: 280 + Math.random() * 200, dy: 120 + Math.random() * 90, t0: t, dur: 900 };
       nextShoot = t + 7000 + Math.random() * 9000;
