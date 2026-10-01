@@ -251,3 +251,41 @@ img.is-broken{visibility:hidden}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition-duration:.01ms !important}
 }
+
+
+/* ===== THEME: NETWORK BLUE ===== */
+:root{
+  --sky:radial-gradient(120% 90% at 50% 0%,#0b1233 0%,#050816 55%,#02030c 100%);
+  --neb1:rgba(56,130,246,.18);--neb2:rgba(14,165,233,.15);--neb3:rgba(99,102,241,.08);
+  --surf:linear-gradient(160deg,rgba(18,28,62,.66),rgba(7,11,30,.55));--line:rgba(120,170,255,.17);
+  --ac:#38bdf8;--ac2:#818cf8;--pg:rgba(56,189,248,.25);
+}
+[data-theme="light"]{
+  --sky:radial-gradient(120% 90% at 50% 0%,#f1f6ff 0%,#dbe8ff 55%,#c3d6fb 100%);
+  --neb1:rgba(56,130,246,.14);--neb2:rgba(14,165,233,.14);--neb3:rgba(99,102,241,.1);
+  --ac:#0369a1;--ac2:#4f46e5;--line:rgba(30,70,150,.2);
+}
+
+/* hero: centered, no planet */
+.hero-grid{grid-template-columns:1fr;justify-items:center;text-align:center}
+.hero-copy{max-width:900px}
+.welcome{display:inline-flex;justify-content:center;padding:10px 24px;border:1px solid var(--line);border-radius:999px;
+  background:color-mix(in srgb,var(--ac) 8%,transparent);margin-bottom:26px}
+.welcome::before{display:none}
+.lead{margin-inline:auto}
+.actions{justify-content:center}
+.hero h1{font-size:clamp(40px,6.6vw,88px)}
+
+/* 3D depth inside cards */
+.tilt-card{transform-style:preserve-3d}
+.tilt-card>i,.tilt-card h3{transform:translateZ(28px)}
+
+/* ===== 3D PANEL TRANSITION (masuk/keluar searah menu) ===== */
+main{perspective:1800px;overflow:hidden}
+main>section{transform:translateX(0) rotateY(0) scale(1);
+  transition:transform .85s cubic-bezier(.65,0,.35,1),opacity .6s ease,visibility 0s .85s}
+main>section.is-active{transform:none;transition:transform .85s cubic-bezier(.65,0,.35,1),opacity .6s ease,visibility 0s}
+main>section.enter-from-right{transform:translateX(55%) rotateY(35deg) scale(.82);opacity:0;visibility:visible;transition:none}
+main>section.enter-from-left{transform:translateX(-55%) rotateY(-35deg) scale(.82);opacity:0;visibility:visible;transition:none}
+main>section.exit-to-left{transform:translateX(-55%) rotateY(-35deg) scale(.82);opacity:0;visibility:visible;z-index:3}
+main>section.exit-to-right{transform:translateX(55%) rotateY(35deg) scale(.82);opacity:0;visibility:visible;z-index:3}
