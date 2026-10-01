@@ -362,3 +362,15 @@ main>section.exit-to-right{transform:translateX(55%) rotateY(35deg) scale(.82);o
 .skill{justify-content:center;min-width:0}
 .skill span{overflow-wrap:anywhere}
 .photo img{max-width:none;display:block}
+
+
+/* ===== FIX MODE TERANG: kartu & animasi terlihat ===== */
+[data-theme="light"]{--surf:linear-gradient(160deg,rgba(255,255,255,.88),rgba(234,242,255,.72));--pg:rgba(14,165,233,.22)}
+[data-theme="light"] .nv-pk{fill:#0369a1;filter:drop-shadow(0 0 4px #38bdf8)}
+[data-theme="light"] .nv-lines line{stroke-opacity:.55}
+[data-theme="light"] .nv-ring{stroke-opacity:.6}
+[data-theme="light"] .welcome{background:rgba(3,105,161,.08)}
+
+/* skill tanpa level: ikon + nama sejajar */
+.skill{flex-direction:row;align-items:center;gap:14px;padding:16px 18px}
+.skill i{margin-bottom:0}

@@ -19,6 +19,7 @@
     root.setAttribute('data-theme', t);
     if (metaTheme) metaTheme.setAttribute('content', t === 'light' ? '#dbe5ff' : '#050816');
     store.set('theme', t);
+    if (typeof ctx !== 'undefined' && ctx && reduce) drawStars(0);
   }
   setTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
   themeBtn.addEventListener('click', function () {
@@ -160,6 +161,7 @@
       ctx.globalAlpha = 1; ctx.fillStyle = cg; ctx.fillRect(px - 220, py - 220, 440, 440);
     }
     var i, j, a, b, dx, dy, d, st; links = [];
+    var L = root.getAttribute('data-theme') === 'light';
     for (i = 0; i < stars.length; i++) {
       st = stars[i];
       if (st.node && !reduce) {
@@ -168,7 +170,7 @@
         if (st.y < 0 || st.y > H) st.vy *= -1;
       }
       ctx.globalAlpha = reduce ? st.a : st.a * (0.55 + 0.45 * Math.sin(t * st.s * 6 + st.p));
-      ctx.fillStyle = st.node ? '#38bdf8' : (i % 9 === 0 ? '#bcd0ff' : '#ffffff');
+      ctx.fillStyle = st.node ? (L ? '#0369a1' : '#38bdf8') : (L ? '#4f6fb8' : (i % 9 === 0 ? '#bcd0ff' : '#ffffff'));
       ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.2832); ctx.fill();
     }
     ctx.lineWidth = 0.7;
@@ -180,8 +182,8 @@
         if (!b.node) break;
         dx = a.x - b.x; dy = a.y - b.y; d = dx * dx + dy * dy;
         if (d < LINK * LINK) {
-          ctx.globalAlpha = (1 - Math.sqrt(d) / LINK) * 0.5;
-          ctx.strokeStyle = '#38bdf8';
+          ctx.globalAlpha = (1 - Math.sqrt(d) / LINK) * (L ? 0.7 : 0.5);
+          ctx.strokeStyle = L ? '#0369a1' : '#38bdf8';
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           links.push([i, j]);
         }
@@ -189,7 +191,7 @@
       dx = a.x - px; dy = a.y - py; d = dx * dx + dy * dy;
       if (d < 180 * 180) {
         ctx.globalAlpha = (1 - Math.sqrt(d) / 180) * 0.55;
-        ctx.strokeStyle = '#9fc2ff';
+        ctx.strokeStyle = L ? '#0369a1' : '#9fc2ff';
         ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(px, py); ctx.stroke();
       }
     }
@@ -203,9 +205,9 @@
       dx = pk.a.x - pk.b.x; dy = pk.a.y - pk.b.y;
       if (pk.t >= 1 || dx * dx + dy * dy > LINK * LINK * 1.5) { packets.splice(i, 1); continue; }
       var qx = pk.a.x + (pk.b.x - pk.a.x) * pk.t, qy = pk.a.y + (pk.b.y - pk.a.y) * pk.t;
-      ctx.globalAlpha = 0.25; ctx.fillStyle = '#7dd3fc';
+      ctx.globalAlpha = 0.25; ctx.fillStyle = L ? '#0284c7' : '#7dd3fc';
       ctx.beginPath(); ctx.arc(qx, qy, 5, 0, 6.2832); ctx.fill();
-      ctx.globalAlpha = 1; ctx.fillStyle = '#e0f7ff';
+      ctx.globalAlpha = 1; ctx.fillStyle = L ? '#075985' : '#e0f7ff';
       ctx.beginPath(); ctx.arc(qx, qy, 1.8, 0, 6.2832); ctx.fill();
     }
     if (shoot) {
