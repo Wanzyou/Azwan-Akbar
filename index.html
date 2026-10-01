@@ -1,733 +1,198 @@
 <!DOCTYPE html>
-<html lang="id">
-
+<html lang="id" data-theme="dark">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0f1e">
+<meta name="description" content="Portfolio Azwan Zahraan Akbar, Future Network Engineer & IT Enthusiast.">
+<title>Azwan Zahraan Akbar | Portfolio</title>
 
-    <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>
-        Azwan Zahraan Akbar | Portfolio
-    </title>
-
-    <!-- FONT -->
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- ICON -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- STYLE -->
-
-    <link rel="stylesheet" href="style.css">
-
+<!-- Set theme before first paint (no flash) -->
+<script>
+(function(){
+  var r=document.documentElement,t=null;
+  r.classList.add('js');
+  try{t=localStorage.getItem('theme')}catch(e){}
+  if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark'}
+  r.setAttribute('data-theme',t);
+})();
+</script>
 </head>
 
 <body>
-
-    <!-- CURSOR -->
-
-    <div class="cursor-light"></div>
-
-    <!-- BACKGROUND -->
-
-    <div class="gradient-bg"></div>
-
-    <div class="grid-bg"></div>
-
-    <div class="orb orb-one"></div>
-    <div class="orb orb-two"></div>
-    <div class="orb orb-three"></div>
-
-    <!-- HEADER -->
-
-    <header id="header">
-
-        <nav>
-
-            <!-- MENU -->
-
-            <ul class="nav-menu">
-
-                <li>
-                    <a href="#home" class="active-link nav-text" data-id="Home" data-en="Home">
-                        Home
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#about" class="nav-text" data-id="Tentang" data-en="About">
-                        Tentang
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#experience" class="nav-text" data-id="Pengalaman" data-en="Experience">
-                        Pengalaman
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#skills" class="nav-text" data-id="Keterampilan" data-en="Skills">
-                        Keterampilan
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#certificate" class="nav-text" data-id="Sertifikat" data-en="Certificate">
-                        Sertifikat
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#contact" class="nav-text" data-id="Kontak" data-en="Contact">
-                        Kontak
-                    </a>
-                </li>
-
-            </ul>
-
-            <!-- LANGUAGE -->
-
-            <div class="language-switch">
-
-                <button id="id-btn" class="lang-btn active-lang">
-                    ID
-                </button>
-
-                <button id="en-btn" class="lang-btn">
-                    EN
-                </button>
-
-            </div>
-
-        </nav>
-
-    </header>
-
-    <!-- HERO -->
-
-    <section id="home" class="hero panel active">
-
-        <div class="panel-inner">
-
-        <!-- 3D -->
-
-        <div class="hero-3d">
-
-            <svg class="network-graph" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-
-                <g class="ng-edges">
-                    <line x1="150" y1="120" x2="380" y2="90"></line>
-                    <line x1="380" y1="90" x2="620" y2="140"></line>
-                    <line x1="620" y1="140" x2="850" y2="110"></line>
-                    <line x1="150" y1="120" x2="250" y2="300"></line>
-                    <line x1="620" y1="140" x2="500" y2="320"></line>
-                    <line x1="850" y1="110" x2="750" y2="290"></line>
-                    <line x1="250" y1="300" x2="500" y2="320"></line>
-                    <line x1="500" y1="320" x2="750" y2="290"></line>
-                    <line x1="250" y1="300" x2="150" y2="480"></line>
-                    <line x1="500" y1="320" x2="450" y2="500"></line>
-                    <line x1="750" y1="290" x2="800" y2="470"></line>
-                    <line x1="150" y1="480" x2="450" y2="500"></line>
-                    <line x1="450" y1="500" x2="800" y2="470"></line>
-                </g>
-
-                <g class="ng-nodes">
-                    <circle class="ng-node" cx="150" cy="120" r="7"></circle>
-                    <circle class="ng-node" cx="380" cy="90" r="6"></circle>
-                    <circle class="ng-node" cx="620" cy="140" r="8"></circle>
-                    <circle class="ng-node" cx="850" cy="110" r="6"></circle>
-                    <circle class="ng-node" cx="250" cy="300" r="7"></circle>
-                    <circle class="ng-node" cx="500" cy="320" r="9"></circle>
-                    <circle class="ng-node" cx="750" cy="290" r="7"></circle>
-                    <circle class="ng-node" cx="150" cy="480" r="6"></circle>
-                    <circle class="ng-node" cx="450" cy="500" r="7"></circle>
-                    <circle class="ng-node" cx="800" cy="470" r="6"></circle>
-                </g>
-
-                <g class="ng-packets">
-                    <circle class="ng-packet" r="4">
-                        <animateMotion dur="3s" repeatCount="indefinite" path="M150,120 L380,90"></animateMotion>
-                    </circle>
-                    <circle class="ng-packet" r="4">
-                        <animateMotion dur="4s" begin="1s" repeatCount="indefinite" path="M500,320 L750,290"></animateMotion>
-                    </circle>
-                    <circle class="ng-packet" r="4">
-                        <animateMotion dur="3.5s" begin="0.5s" repeatCount="indefinite" path="M250,300 L150,480"></animateMotion>
-                    </circle>
-                    <circle class="ng-packet" r="4">
-                        <animateMotion dur="5s" begin="2s" repeatCount="indefinite" path="M150,480 L450,500"></animateMotion>
-                    </circle>
-                    <circle class="ng-packet" r="4">
-                        <animateMotion dur="4.5s" begin="1.5s" repeatCount="indefinite" path="M620,140 L500,320"></animateMotion>
-                    </circle>
-                </g>
-
-            </svg>
-
-        </div>
-
-        <!-- CONTENT -->
-
-        <div class="hero-content">
-
-            <span class="hero-badge">
-
-                <span class="text"
-                    data-id="Selamat Datang di Portfolio Saya"
-                    data-en="Welcome To My Portfolio">
-
-                    Selamat Datang di Portfolio Saya
-
-                </span>
-
-            </span>
-
-            <h1 class="text"
-                data-id="Future Network Engineer & IT Enthusiast"
-                data-en="Future Network Engineer & IT Enthusiast">
-
-                Future Network Engineer & IT Enthusiast
-
-            </h1>
-
-            <p class="text"
-               data-id="Portofolio ini menampilkan perjalanan belajar, keterampilan, dan pengalaman saya di dunia jaringan komputer dan teknologi."
-               data-en="This portfolio showcases my learning journey, skills, and experience in the world of computer networking and technology.">
-
-                Portofolio ini menampilkan
-                perjalanan belajar,
-                keterampilan,
-                dan pengalaman saya
-                di dunia jaringan komputer dan teknologi.
-
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#about" class="btn text"
-                   data-id="Jelajahi"
-                   data-en="Explore">
-
-                    Jelajahi
-
-                </a>
-
-                <a href="#contact" class="btn-outline text"
-                   data-id="Hubungi Saya"
-                   data-en="Contact Me">
-
-                    Hubungi Saya
-
-                </a>
-
-            </div>
-
-        </div>
-
-        </div>
-
-    </section>
-
-    <!-- ABOUT -->
-
-    <section id="about" class="section panel">
-
-        <div class="panel-inner">
-
-        <div class="section-title">
-
-            <span class="text"
-                  data-id="Tentang Saya"
-                  data-en="About Me">
-
-                Tentang Saya
-
-            </span>
-
-            <h2>
-                Azwan Zahraan Akbar
-            </h2>
-
-        </div>
-
-        <div class="about-container">
-
-            <!-- FOTO -->
-
-            <div class="about-image">
-
-                <div class="about-glow"></div>
-
-                <div class="profile-3d-wrap">
-
-                    <div class="profile-ring"></div>
-
-                    <img src="images/Foto.jpeg" alt="Azwan" class="lightbox-trigger" data-lightbox>
-
-                </div>
-
-            </div>
-
-            <!-- TEXT -->
-
-            <div class="about-text">
-
-                <h3 class="text"
-                    data-id="Siswa Teknik Jaringan Komputer dan Telekomunikasi"
-                    data-en="Computer and Telecommunications Network Engineering Student">
-
-                    Siswa Teknik Jaringan Komputer dan Telekomunikasi
-
-                </h3>
-
-                <p class="text"
-                   data-id="Saya adalah siswa SMKN 13 Bandung jurusan Teknik Jaringan Komputer dan Telekomunikasi yang memiliki minat besar di bidang jaringan komputer, Cisco, MikroTik, dan teknologi modern."
-                   data-en="I am a student of SMKN 13 Bandung majoring in Computer and Network Engineering with a strong passion for networking, Cisco, MikroTik, and modern technology.">
-
-                    Saya adalah siswa SMKN 13 Bandung
-                    jurusan Teknik Jaringan Komputer dan Telekomunikasi
-                    yang memiliki minat besar
-                    di bidang jaringan komputer,
-                    Cisco,
-                    MikroTik,
-                    dan teknologi modern.
-
-                </p>
-
-                <p class="text"
-                   data-id="Memiliki sertifikasi Cisco Networking Academy Networking Basics dan Certificate of Completion AI Ready ASEAN, serta terus mengembangkan kemampuan melalui proyek sekolah dan eksplorasi teknologi."
-                   data-en="Certified in Cisco Networking Academy Networking Basics and Certificate of Completion AI Ready ASEAN, and continuously improving my skills through school projects and technology exploration.">
-
-                    Memiliki sertifikasi
-                    Cisco Networking Academy Networking Basics
-                    dan Certificate of Completion AI Ready ASEAN,
-                    serta terus mengembangkan kemampuan
-                    melalui proyek sekolah
-                    dan eksplorasi teknologi.
-
-                </p>
-
-                <div class="about-cards">
-
-                    <div class="mini-card">
-
-                        <h4>
-                            Location
-                        </h4>
-
-                        <p>
-                            Bandung, Indonesia
-                        </p>
-
-                    </div>
-
-                    <div class="mini-card">
-
-                        <h4>
-                            Education
-                        </h4>
-
-                        <p>
-                            SMKN 13 Bandung
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        </div>
-
-    </section>
-
-    <!-- EXPERIENCE -->
-
-    <section id="experience" class="section dark panel">
-
-        <div class="panel-inner">
-
-        <div class="section-title">
-
-            <span class="text"
-                  data-id="Pengalaman"
-                  data-en="Experience">
-
-                Pengalaman
-
-            </span>
-
-            <h2 class="text"
-                data-id="Proyek Sekolah"
-                data-en="School Projects">
-
-                Proyek Sekolah
-
-            </h2>
-
-        </div>
-
-        <div class="experience-grid">
-
-            <div class="exp-card" data-tilt>
-
-                <div class="exp-line"></div>
-
-                <h3>
-                    VoIP Network
-                </h3>
-
-                <p class="text"
-                   data-id="Melakukan konfigurasi VoIP dan simulasi komunikasi jaringan."
-                   data-en="Configured VoIP and simulated network communication.">
-
-                    Melakukan konfigurasi VoIP
-                    dan simulasi komunikasi jaringan.
-
-                </p>
-
-            </div>
-
-            <div class="exp-card" data-tilt>
-
-                <div class="exp-line"></div>
-
-                <h3>
-                    VLAN & PPPoE
-                </h3>
-
-                <p class="text"
-                   data-id="Implementasi VLAN dan PPPoE menggunakan MikroTik."
-                   data-en="Implemented VLAN and PPPoE using MikroTik.">
-
-                    Implementasi VLAN
-                    dan PPPoE menggunakan MikroTik.
-
-                </p>
-
-            </div>
-
-            <div class="exp-card" data-tilt>
-
-                <div class="exp-line"></div>
-
-                <h3>
-                    Cisco Packet Tracer
-                </h3>
-
-                <p class="text"
-                   data-id="Membangun simulasi topologi jaringan menggunakan Cisco Packet Tracer."
-                   data-en="Built network topology simulations using Cisco Packet Tracer.">
-
-                    Membangun simulasi topologi jaringan
-                    menggunakan Cisco Packet Tracer.
-
-                </p>
-
-            </div>
-
-            <div class="exp-card" data-tilt>
-
-                <div class="exp-line"></div>
-
-                <h3>
-                    LAN Configuration
-                </h3>
-
-                <p class="text"
-                   data-id="Melakukan konfigurasi jaringan LAN dan pengujian konektivitas."
-                   data-en="Configured LAN network and tested connectivity.">
-
-                    Melakukan konfigurasi jaringan LAN
-                    dan pengujian konektivitas.
-
-                </p>
-
-            </div>
-
-            <div class="exp-card" data-tilt>
-
-                <div class="exp-line"></div>
-
-                <h3>
-                    Network Troubleshooting
-                </h3>
-
-                <p class="text"
-                   data-id="Menganalisis dan memperbaiki permasalahan dasar jaringan komputer."
-                   data-en="Analyzed and solved basic computer networking issues.">
-
-                    Menganalisis dan memperbaiki
-                    permasalahan dasar jaringan komputer.
-
-                </p>
-
-            </div>
-
-        </div>
-
-        </div>
-
-    </section>
-
-    <!-- SKILLS -->
-
-    <section id="skills" class="section panel">
-
-        <div class="panel-inner">
-
-        <div class="section-title">
-
-            <span class="text"
-                  data-id="Keterampilan"
-                  data-en="Skills">
-
-                Keterampilan
-
-            </span>
-
-            <h2 class="text"
-                data-id="Kemampuan Profesional"
-                data-en="Professional Skills">
-
-                Kemampuan Profesional
-
-            </h2>
-
-        </div>
-
-        <div class="skills-grid">
-
-            <div class="skill-card" data-tilt>
-
-                <i class="fa-solid fa-network-wired"></i>
-
-                <h3>
-                    Cisco
-                </h3>
-
-            </div>
-
-            <div class="skill-card" data-tilt>
-
-                <i class="fa-solid fa-server"></i>
-
-                <h3>
-                    MikroTik
-                </h3>
-
-            </div>
-
-            <div class="skill-card" data-tilt>
-
-                <i class="fa-solid fa-magnifying-glass-chart"></i>
-
-                <h3 class="text"
-                    data-id="Troubleshooting Jaringan"
-                    data-en="Network Troubleshooting">
-                    Troubleshooting Jaringan
-                </h3>
-
-            </div>
-
-            <div class="skill-card" data-tilt>
-
-                <i class="fa-solid fa-shield-halved"></i>
-
-                <h3>
-                    IT Support
-                </h3>
-
-            </div>
-
-        </div>
-
-        </div>
-
-    </section>
-
-    <!-- CERTIFICATE -->
-
-    <section id="certificate" class="section dark panel">
-
-        <div class="panel-inner">
-
-        <div class="section-title">
-
-            <span class="text"
-                  data-id="Pencapaian"
-                  data-en="Achievement">
-
-                Pencapaian
-
-            </span>
-
-            <h2 class="text"
-                data-id="Sertifikat"
-                data-en="Certificate">
-
-                Sertifikat
-
-            </h2>
-
-        </div>
-
-        <div class="certificate-box">
-
-            <div class="certificate-image" data-tilt>
-
-                <img src="images/Certificate.jpg" alt="Certificate Networking Basics" class="lightbox-trigger" data-lightbox>
-
-            </div>
-
-            <div class="certificate-info">
-
-                <h3>
-                    Networking Basics
-                </h3>
-
-                <p>
-                    Cisco Networking Academy
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="certificate-box" style="margin-top:70px;">
-
-            <div class="certificate-image" data-tilt>
-
-                <img src="images/Certificate AI.png" alt="Certificate AI" class="lightbox-trigger" data-lightbox>
-
-            </div>
-
-            <div class="certificate-info">
-
-                <h3 class="text"
-                    data-id="Sertifikat AI"
-                    data-en="AI Certificate">
-                    Sertifikat AI
-                </h3>
-
-                <p class="text"
-                   data-id="Sertifikasi bidang Artificial Intelligence"
-                   data-en="Artificial Intelligence Certification">
-                    Sertifikasi bidang Artificial Intelligence
-                </p>
-
-            </div>
-
-        </div>
-
-        </div>
-
-    </section>
-
-    <!-- CONTACT -->
-
-    <section id="contact" class="section panel">
-
-        <div class="panel-inner">
-
-        <div class="section-title">
-
-            <span class="text"
-                  data-id="Kontak"
-                  data-en="Contact">
-
-                Kontak
-
-            </span>
-
-            <h2 class="text"
-                data-id="Mari Terhubung"
-                data-en="Let's Connect">
-
-                Mari Terhubung
-
-            </h2>
-
-        </div>
-
-        <div class="contact-grid">
-
-            <a href="mailto:azwanakbar864@gmail.com" class="contact-card" data-tilt>
-
-                <i class="fa-solid fa-envelope"></i>
-
-                <h3>
-                    Email
-                </h3>
-
-            </a>
-
-            <a href="https://www.instagram.com/_wanzzyy?igsh=dnc1YmhkdHEwYjV4"
-               target="_blank"
-               class="contact-card" data-tilt>
-
-                <i class="fa-brands fa-instagram"></i>
-
-                <h3>
-                    Instagram
-                </h3>
-
-            </a>
-
-            <a href="https://azwanakbar.blogspot.com/"
-               target="_blank"
-               class="contact-card" data-tilt>
-
-                <i class="fa-brands fa-blogger-b"></i>
-
-                <h3>
-                    Blogger 1
-                </h3>
-
-            </a>
-
-            <a href="https://azwanakbarasj.blogspot.com/"
-               target="_blank"
-               class="contact-card" data-tilt>
-
-                <i class="fa-brands fa-blogger-b"></i>
-
-                <h3>
-                    Blogger 2
-                </h3>
-
-            </a>
-
-        </div>
-
-        <p class="panel-footer">
-            © 2026 Azwan Zahraan Akbar
-        </p>
-
-        </div>
-
-    </section>
-
-    <!-- LIGHTBOX -->
-
-    <div class="lightbox" id="lightbox">
-
-        <span class="lightbox-close" id="lightboxClose">&times;</span>
-
-        <img class="lightbox-img" id="lightboxImg" src="" alt="Preview">
-
+<a class="skip" href="#main" data-en="Skip to content">Lewati ke konten</a>
+<div class="backdrop" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-in">
+    <a class="brand" href="#home" aria-label="Azwan Zahraan Akbar">AZ</a>
+
+    <nav class="nav" id="nav" aria-label="Menu">
+      <a href="#home" class="active" data-en="Home">Home</a>
+      <a href="#about" data-en="About">Tentang</a>
+      <a href="#experience" data-en="Experience">Pengalaman</a>
+      <a href="#skills" data-en="Skills">Keterampilan</a>
+      <a href="#certificate" data-en="Certificate">Sertifikat</a>
+      <a href="#contact" data-en="Contact">Kontak</a>
+    </nav>
+
+    <div class="controls">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="id-btn" aria-pressed="true">ID</button>
+        <button type="button" id="en-btn" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="icon-btn" id="theme" aria-label="Ganti tema">
+        <i class="fa-solid fa-moon ic-moon"></i>
+        <i class="fa-solid fa-sun ic-sun"></i>
+      </button>
+      <button type="button" class="icon-btn burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="welcome" data-en="Welcome to my portfolio">Selamat datang di portfolio saya</p>
+      <h1 data-en="Future Network Engineer &amp; IT Enthusiast">Future Network Engineer &amp; IT Enthusiast</h1>
+      <p class="lead" data-en="This portfolio showcases my learning journey, skills, and experience in computer networking and technology.">Portofolio ini menampilkan perjalanan belajar, keterampilan, dan pengalaman saya di dunia jaringan komputer dan teknologi.</p>
+      <div class="actions">
+        <a href="#about" class="btn" data-en="Explore">Jelajahi</a>
+        <a href="#contact" class="btn ghost" data-en="Contact me">Hubungi saya</a>
+      </div>
     </div>
 
-    <!-- SCRIPT -->
+    <!-- 4D tesseract -->
+    <div class="scene" aria-hidden="true">
+      <div class="tilt">
+        <div class="spin">
+          <div class="cube c1"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="cube c2"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="cube c3"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="ring r1"></div>
+          <div class="ring r2"></div>
+          <div class="core"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <h2 data-en="About me">Tentang saya</h2>
+    </header>
+    <div class="about">
+      <figure class="photo">
+        <img src="images/Foto.jpeg" alt="Azwan Zahraan Akbar" width="640" height="800" loading="lazy" data-lightbox>
+      </figure>
+      <div class="about-text">
+        <h3 data-en="Azwan Zahraan Akbar">Azwan Zahraan Akbar</h3>
+        <p data-en="I am a vocational high school graduate in Computer and Telecommunications Network Engineering, with a strong interest in computer networking, Cisco, MikroTik, and modern technology.">Saya adalah seorang lulusan SMK di bidang Teknik Jaringan Komputer dan Telekomunikasi, dengan minat besar pada jaringan komputer, Cisco, MikroTik, dan teknologi modern.</p>
+        <p data-en="Certified in Cisco Networking Academy Networking Basics and holding a Certificate of Completion in AI Ready ASEAN, I keep growing through projects and technology exploration.">Memiliki sertifikasi Cisco Networking Academy Networking Basics dan Certificate of Completion AI Ready ASEAN, serta terus berkembang melalui proyek dan eksplorasi teknologi.</p>
+        <div class="facts">
+          <div class="card fact"><span data-en="Location">Lokasi</span><strong>Bandung, Indonesia</strong></div>
+          <div class="card fact"><span data-en="Education">Pendidikan</span><strong data-en="Vocational graduate, Network Engineering">Lulusan SMK, Teknik Jaringan</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- EXPERIENCE -->
+<section id="experience" class="section alt">
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <h2 data-en="Experience">Pengalaman</h2>
+      <p data-en="School projects">Proyek sekolah</p>
+    </header>
+    <div class="flex-grid">
+      <article class="card tilt-card"><i class="fa-solid fa-phone-volume"></i><h3>VoIP Network</h3><p data-en="Configured VoIP and simulated network communication.">Melakukan konfigurasi VoIP dan simulasi komunikasi jaringan.</p></article>
+      <article class="card tilt-card"><i class="fa-solid fa-diagram-project"></i><h3>VLAN &amp; PPPoE</h3><p data-en="Implemented VLAN and PPPoE using MikroTik.">Implementasi VLAN dan PPPoE menggunakan MikroTik.</p></article>
+      <article class="card tilt-card"><i class="fa-solid fa-sitemap"></i><h3>Cisco Packet Tracer</h3><p data-en="Built network topology simulations using Cisco Packet Tracer.">Membangun simulasi topologi jaringan menggunakan Cisco Packet Tracer.</p></article>
+      <article class="card tilt-card"><i class="fa-solid fa-ethernet"></i><h3>LAN Configuration</h3><p data-en="Configured LAN networks and tested connectivity.">Melakukan konfigurasi jaringan LAN dan pengujian konektivitas.</p></article>
+      <article class="card tilt-card"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Network Troubleshooting</h3><p data-en="Analyzed and solved basic computer networking issues.">Menganalisis dan memperbaiki permasalahan dasar jaringan komputer.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <h2 data-en="Skills">Keterampilan</h2>
+      <p data-en="Professional skills">Kemampuan profesional</p>
+    </header>
+    <div class="grid-4">
+      <div class="card tilt-card center"><i class="fa-solid fa-network-wired"></i><h3>Cisco</h3></div>
+      <div class="card tilt-card center"><i class="fa-solid fa-server"></i><h3>MikroTik</h3></div>
+      <div class="card tilt-card center"><i class="fa-solid fa-magnifying-glass-chart"></i><h3 data-en="Network Troubleshooting">Troubleshooting Jaringan</h3></div>
+      <div class="card tilt-card center"><i class="fa-solid fa-headset"></i><h3>IT Support</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATE -->
+<section id="certificate" class="section alt">
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <h2 data-en="Certificates">Sertifikat</h2>
+      <p data-en="Achievements">Pencapaian</p>
+    </header>
+    <div class="certs">
+      <figure class="card cert">
+        <div class="cert-img"><img src="images/Certificate.jpg" alt="Certificate Networking Basics" loading="lazy" data-lightbox></div>
+        <figcaption><h3>Networking Basics</h3><p>Cisco Networking Academy</p></figcaption>
+      </figure>
+      <figure class="card cert">
+        <div class="cert-img"><img src="images/Certificate%20AI.png" alt="Certificate AI Ready ASEAN" loading="lazy" data-lightbox></div>
+        <figcaption><h3 data-en="AI Certificate">Sertifikat AI</h3><p data-en="Artificial Intelligence certification">Sertifikasi bidang Artificial Intelligence</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="wrap reveal">
+    <header class="sec-head">
+      <h2 data-en="Contact">Kontak</h2>
+      <p data-en="Let's connect">Mari terhubung</p>
+    </header>
+    <div class="grid-4">
+      <a class="card tilt-card center link" href="mailto:azwanakbar864@gmail.com"><i class="fa-solid fa-envelope"></i><h3>Email</h3></a>
+      <a class="card tilt-card center link" href="https://www.instagram.com/_wanzzyy?igsh=dnc1YmhkdHEwYjV4" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i><h3>Instagram</h3></a>
+      <a class="card tilt-card center link" href="https://azwanakbar.blogspot.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-blogger-b"></i><h3>Blogger 1</h3></a>
+      <a class="card tilt-card center link" href="https://azwanakbarasj.blogspot.com/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-blogger-b"></i><h3>Blogger 2</h3></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">© <span id="year">2026</span> Azwan Zahraan Akbar</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Preview">
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<script src="script.js"></script>
 </body>
-
 </html>
